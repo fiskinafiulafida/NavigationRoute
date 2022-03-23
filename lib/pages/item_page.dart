@@ -13,38 +13,53 @@ class ItemPage extends StatelessWidget {
         title: const Text('Shopping List'),
       ),
       body: Center(
-        child: Row(children: [
-          // gambar
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const DetailItem();
-              }));
-            },
-            child: Hero(
-              tag: 'imageHero',
-              child: Image(
-                image: AssetImage("images/garam.jpg"),
-              ),
-              // child: Image.network(
-              //   'https://picsum.photos/250?image=9',
-              // ),
-            ),
+        child: Card(
+          child: Container(
+            margin: EdgeInsets.all(8),
+            child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  // gambar
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const DetailItem();
+                      }));
+                    },
+                    child: Hero(
+                      tag: 'imageHero',
+                      child: Image.asset(
+                        itemArgs.image,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  // detail text
+                  Expanded(
+                      child: Text(
+                    itemArgs.name,
+                    textAlign: TextAlign.end,
+                  )),
+                  Text(', Kode : '),
+                  Expanded(
+                    child: Text(
+                      itemArgs.kodeBarang,
+                      textAlign: TextAlign.justify,
+                    ),
+                  ),
+                  Text(' Rp.'),
+                  Expanded(
+                    child: Text(
+                      itemArgs.price.toString(),
+                      textAlign: TextAlign.justify,
+                    ),
+                  )
+                ]),
           ),
-          // detail text
-          Expanded(
-              child: Text(
-            itemArgs.name,
-            textAlign: TextAlign.end,
-          )),
-          Text(' With '),
-          Expanded(
-            child: Text(
-              itemArgs.price.toString(),
-              textAlign: TextAlign.justify,
-            ),
-          )
-        ]),
+        ),
       ),
     );
   }
