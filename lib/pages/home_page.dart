@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tugas_navigation/models/item.dart';
 
+import '../widgets/cardHome.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -49,25 +51,7 @@ class HomePage extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(context, '/item', arguments: item);
                   },
-                  child: Card(
-                    child: Container(
-                      margin: EdgeInsets.all(8),
-                      child: Row(mainAxisSize: MainAxisSize.min, children: [
-                        Icon(
-                          Icons.shopping_basket_sharp,
-                          color: Color.fromARGB(255, 91, 204, 219),
-                          size: 20.0,
-                        ),
-                        Expanded(child: Text(item.name)),
-                        Expanded(
-                          child: Text(
-                            item.price.toString(),
-                            textAlign: TextAlign.end,
-                          ),
-                        )
-                      ]),
-                    ),
-                  ),
+                  child: CardHome(item: item),
                 );
               }),
         ));
